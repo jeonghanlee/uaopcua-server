@@ -14,10 +14,12 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 apt install wine
 dpkg --add-architecture i386 && apt-get update && apt-get install wine32
 ```
-* Install the downloaded Server on Linux
+* Install the downloaded Server and uaexpert on Linux
 
 ```
 $ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
+$ wine uaexpert-bin-win32-x86-vs2008sp1-v1.5.0-319.exe
+
 ```
 
 ## Run and Stop a simulated server
@@ -47,7 +49,7 @@ jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
 10:58:39.570|E|0009* ######################################################################
 10:58:39.570|E|0009* # Server started! Press x to stop; r to restart the server!
 10:58:39.570|E|0009* ######################################################################
-10:58:39.571|E|0009*   Endpoint URL 0: opc.tcp://hadron:48020
+10:58:39.571|E|0009*   Endpoint URL 0: opc.tcp://127.0.0.1:48020
 10:58:39.571|E|0009*   Server started at 2018-11-27T09:58:39.571Z
 
 ```
@@ -98,6 +100,18 @@ One example, the target path is defined as
 ```
 ${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
 ```
+In order to make the connection smoothly, it would be better to replace [gethostname] with 127.0.0.1 such as
+```
+opc.tcp://127.0.0.1:48020
+```
+
+
+* Start the UaExpert
+```
+opcua-server (master)$ ./start_server.bash uaexpert
+```
+
+
 
 ## Connect the Server with EPICS IOC 
 

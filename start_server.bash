@@ -102,6 +102,15 @@ function stop_server
     fi
 }
 
+function start_uaexpert
+{
+    
+    pushd "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaExpert/bin"
+    wine uaexpert.exe &
+    popd
+}
+
+
 
 function install_ini
 {
@@ -128,6 +137,9 @@ case "$1" in
 	stop_server
 	start_server
 	;;
+    uaexpert)
+	start_uaexpert
+	;;
 #    install)
 #	install_ini
     #	;;
@@ -138,7 +150,7 @@ case "$1" in
 	printf "\"${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini\"\n"
 	;;
      *)
-	echo "Usage: $0 {start|stop|restart|edit|show}"
+	echo "Usage: $0 {start|stop|restart|edit|show|uaexpert}"
 	exit 2
 esac
 
