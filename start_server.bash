@@ -128,9 +128,9 @@ case "$1" in
 	stop_server
 	start_server
 	;;
-    install)
-	install_ini
-	;;
+#    install)
+#	install_ini
+#	;;
      *)
 	echo "Usage: $0 {start|stop|restart|install}"
 	exit 2
