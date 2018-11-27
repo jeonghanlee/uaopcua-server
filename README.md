@@ -103,6 +103,11 @@ ${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings
 
 Please check e3-opcua [2] in order to do this.
 
+## OPC UA GUI Client
+One can download the Unified-automation UaExpert tool [3].
+
+
 ## Reference
 [1] https://www.unified-automation.com/downloads/opc-ua-servers
 [2] https://github.com/icshwi/e3-opcua
+[3] https://www.unified-automation.com/downloads/opc-ua-clients/file/download/details/uaexpert-v150.html

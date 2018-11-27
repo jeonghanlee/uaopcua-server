@@ -18,8 +18,8 @@
 #
 #   author  : Jeong Han Lee
 #   email   : jeonghan.lee@gmail.com
-#   date    : Tuesday, November 27 10:30:59 CET 2018
-#   version : 0.0.1
+#   date    : Tuesday, November 27 14:34:23 CET 2018
+#   version : 0.0.2
 
 declare -gr SC_SCRIPT="$(realpath "$0")"
 declare -gr SC_SCRIPTNAME=${0##*/}
@@ -130,9 +130,15 @@ case "$1" in
 	;;
 #    install)
 #	install_ini
-#	;;
+    #	;;
+    edit)
+	emacs "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini" &
+	;;
+    show)
+	printf "\"${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini\"\n"
+	;;
      *)
-	echo "Usage: $0 {start|stop|restart|install}"
+	echo "Usage: $0 {start|stop|restart|edit|show}"
 	exit 2
 esac
 
