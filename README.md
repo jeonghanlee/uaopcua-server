@@ -3,7 +3,7 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 
 ## Requirements
 
-* Debian 9
+* Debian 8/9
 * Wine
 * Unified Automation ANSI C Server [1]
 
@@ -109,5 +109,6 @@ One can download the Unified-automation UaExpert tool [3].
 
 ## Reference
 [1] https://www.unified-automation.com/downloads/opc-ua-servers
+
 [2] https://github.com/icshwi/e3-opcua
 [3] https://www.unified-automation.com/downloads/opc-ua-clients/file/download/details/uaexpert-v150.html
