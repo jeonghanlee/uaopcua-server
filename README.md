@@ -20,6 +20,8 @@ dpkg --add-architecture i386 && apt-get update && apt-get install wine32
 $ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
 ```
 
+## Run and Stop a simulated server
+
 * Start the server
 ```
  ./start_server.bash start
@@ -89,13 +91,18 @@ jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
 
 ```
 
-* Install the settings.ini into the bin path
+* Check the settings.ini into the bin path
 
 One example, the target path is defined as 
 
 ```
-${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin
+${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
 ```
+
+## Connect the Server with EPICS IOC 
+
+Please check e3-opcua [2] in order to do this.
 
 ## Reference
 [1] https://www.unified-automation.com/downloads/opc-ua-servers
+[2] https://github.com/icshwi/e3-opcua
