@@ -111,6 +111,10 @@ opc.tcp://127.0.0.1:48020
 opcua-server (master)$ ./start_server.bash uaexpert
 ```
 
+* Get the machine ip address
+```
+uaopcua-server (master)$ ./start_server.bash ip
+```
 
 
 ## Connect the Server with EPICS IOC 

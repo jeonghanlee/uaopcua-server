@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-#  Copyright (c) 2018 - Present  European Spallation Source ERIC
+#  Copyright (c) 2019         Jeong Han Lee
+#  Copyright (c) 2018 - 2019  European Spallation Source ERIC
 #
 #  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
@@ -18,8 +19,8 @@
 #
 #   author  : Jeong Han Lee
 #   email   : jeonghan.lee@gmail.com
-#   date    : Tuesday, November 27 14:34:23 CET 2018
-#   version : 0.0.2
+#   date    : Thursday, January 31 20:41:37 CET 2019
+#   version : 0.0.3
 
 declare -gr SC_SCRIPT="$(realpath "$0")"
 declare -gr SC_SCRIPTNAME=${0##*/}
@@ -88,6 +89,12 @@ function start_server
     popd
 }
 
+function get_ip
+{
+    local realip=$(ip -4 route get 8.8.8.8 | awk {'print $7'} | tr -d '\n')
+
+    printf "Real IP address %s\n" "$realip"
+}
 
 function stop_server
 {
@@ -149,8 +156,11 @@ case "$1" in
     show)
 	printf "\"${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini\"\n"
 	;;
+    ip)
+	get_ip;
+	;;
      *)
-	echo "Usage: $0 {start|stop|restart|edit|show|uaexpert}"
+	echo "Usage: $0 {start|stop|restart|edit|show|uaexpert|ip}"
 	exit 2
 esac
 
