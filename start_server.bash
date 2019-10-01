@@ -28,7 +28,7 @@ declare -gr SC_TOP="${SC_SCRIPT%/*}"
 declare -gr SC_LOGDATE="$(date +%y%m%d%H%M)"
 
 
-declare -gr ProgramFiles="${HOME}/.wine/drive_c/Program Files (x86)/UnifiedAutomation"
+declare -gr ProgramFiles="${HOME}/.wine/drive_c/UnifiedAutomation"
 declare -gr UaAnsiCServer="${ProgramFiles}/UaAnsiCServer"
 declare -gr UaCPPServer="${ProgramFiles}/UaCPPServer"
 

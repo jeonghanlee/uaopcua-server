@@ -3,7 +3,7 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 
 ## Requirements
 
-* Debian 8/9
+* Debian 8/9/10
 * Wine
 * Unified Automation ANSI C Server [1]
 
@@ -13,7 +13,7 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 
 Extract `tar.gz` file into a specific folder. 
 ```
-ln -s ~/programs/uaexpert-1.5.1/UaExpert-1.5.1-331-x86_64.AppImage  uaexpert
+ln -s ~/programs/uaexpert-1.5.1/UaExpert-1.5.1-331-x86_64.AppImage  ~/bin/uaexpert
 ```
 
 ### UA Demo Server on Linux
@@ -22,8 +22,7 @@ ln -s ~/programs/uaexpert-1.5.1/UaExpert-1.5.1-331-x86_64.AppImage  uaexpert
 * Install wine with root
 
 ```
-apt install wine
-dpkg --add-architecture i386 && apt-get update && apt-get install wine32 winbind
+dpkg --add-architecture i386 && apt-get update && apt-get install wine wine32 winbind
 ```
 
 
@@ -34,20 +33,20 @@ There are two Demo Servers, one can install both through wine
 ```
 $ wine uaservercpp-win32-x86-vs2010sp1-v1.7.0-449.exe
 ```
-Set the installation path such as `C:\Program Files (x86)\UnifiedAutomation\UaCPPServer`
+Set the installation path such as `C:\UnifiedAutomation\UaCPPServer`
 
 
 ```
 $ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
 ```
-Set the installation path such as `C:\Program Files (x86)\UnifiedAutomation\UaAnsiCServer`
+Set the installation path such as `C:\UnifiedAutomation\UaAnsiCServer`
 
 
 ## Run and Stop a simulated server
 
-* Start the server
+* Start the server : C demo
 ```
- ./start_server.bash start
+ ./start_server.bash cstart
 jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
 10:58:39.559|E|0009* UA Server: Building Provider List...
 10:58:39.560|E|0009* UA Server: Loading Provider Modules...
@@ -77,14 +76,14 @@ jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
 
 * Stop the server
 ```
-opcua-server (master)$ ./start_server.bash stop
+opcua-server (master)$ ./start_server.bash cstop
 >> Server is running with 22685
    Killing the running server ....
 ```
 
 * Restart the server
 ```
-opcua-server (master)$ ./start_server.bash restart
+opcua-server (master)$ ./start_server.bash crestart
 >> Server is running with 22744
    Killing the running server ....
 jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
@@ -119,7 +118,7 @@ jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
 One example, the target path is defined as 
 
 ```
-${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
+${HOME}/.wine/drive_c/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
 ```
 In order to make the connection smoothly, it would be better to replace [gethostname] with 127.0.0.1 such as
 ```
