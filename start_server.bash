@@ -28,6 +28,10 @@ declare -gr SC_TOP="${SC_SCRIPT%/*}"
 declare -gr SC_LOGDATE="$(date +%y%m%d%H%M)"
 
 
+declare -gr ProgramFiles="${HOME}/.wine/drive_c/Program Files (x86)/UnifiedAutomation"
+declare -gr UaAnsiCServer="${ProgramFiles}/UaAnsiCServer"
+declare -gr UaCPPServer="${ProgramFiles}/UaCPPServer"
+
 EXIST=1
 NON_EXIST=0
 
@@ -82,13 +86,6 @@ function checkIfVar()
     echo "${result}"
 }
 
-function start_server
-{
-    pushd "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin"
-    wine uaserverc.exe &
-    popd
-}
-
 function get_ip
 {
     local realip=$(ip -4 route get 8.8.8.8 | awk {'print $7'} | tr -d '\n')
@@ -96,10 +93,42 @@ function get_ip
     printf "Real IP address %s\n" "$realip"
 }
 
-function stop_server
+
+function start_cserver
+{
+    pushd "${UaAnsiCServer}/bin"
+    wine uaserverc.exe &
+    popd
+}
+
+function start_cppserver
+{
+    pushd "${UaCPPServer}/bin"
+    wine uaservercpp.exe &
+    popd
+}
+
+
+
+
+function stop_cserver
 {
     local pid=NON_EXIST;
     pid=$(ps a |grep uaserverc.exe | grep -v "grep" | awk '{print $1}')
+    if [[ $(checkIfVar "${pid}") -eq "$NON_EXIST" ]]; then
+	printf ">> Server is not running\n";
+    else
+	printf ">> Server is running with %s\n" "${pid}"
+	printf "   Killing the running server ....\n"
+	kill -9 ${pid}
+    fi
+}
+
+
+function stop_cppserver
+{
+    local pid=NON_EXIST;
+    pid=$(ps a |grep uaservercpp.exe | grep -v "grep" | awk '{print $1}')
     if [[ $(checkIfVar "${pid}") -eq "$NON_EXIST" ]]; then
 	printf ">> Server is not running\n";
     else
@@ -119,30 +148,40 @@ function start_uaexpert
 
 
 
-function install_ini
+function install_ini_for_cserver
 {
     local settings=settings.ini
     local settings_path=${SC_TOP}/.ini
     
-    pushd "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin"
+    pushd "${UaAnsiCServer}/bin"
     if [[ $(checkIfFile "${settings}") -eq "$EXIST" ]]; then
 	printf "We've found %s, create the existent backup, and move it to %s with the suffix\n" "${settings}" "${settings_path}"
 	mv ${settings} ${settings_path}/${settings}_${SC_LOGDATE}
     fi
    
-    install -m 644 ${settings_path}/${settings} "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin"
+    install -m 644 ${settings_path}/${settings} "${UaAnsiCServer}/bin"
 }
 
 case "$1" in
-    start)
-	start_server
+    cstart)
+	start_cserver
 	;;
-    stop)
-	stop_server
+    cstop)
+	stop_cserver
 	;;
-    restart)
-	stop_server
-	start_server
+    crestart)
+	stop_cserver
+	start_cserver
+	;;
+    cppstart)
+	start_cppserver
+	;;
+    cppstop)
+	stop_cppserver
+	;;
+    cpprestart)
+	stop_cppserver
+	start_cppserver
 	;;
     uaexpert)
 	start_uaexpert
@@ -150,11 +189,17 @@ case "$1" in
 #    install)
 #	install_ini
     #	;;
-    edit)
-	emacs "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini" &
+    cedit)
+	emacs "${UaAnsiCServer}/bin/settings.ini" &
 	;;
-    show)
-	printf "\"${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaAnsiCServer/bin/settings.ini\"\n"
+    cshow)
+	printf "\"${UaAnsiCServer}/bin/settings.ini\"\n"
+	;;
+    cppedit)
+	emacs "${UaCPPServer}/bin/ServerConfig.xml" &
+	;;
+    cppshow)
+	printf "\"${UaCPPServer}/bin/ServerConfig.xml\"\n"
 	;;
     ip)
 	get_ip;

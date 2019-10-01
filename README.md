@@ -8,19 +8,40 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 * Unified Automation ANSI C Server [1]
 
 ## Preparation 
+
+### UaExpert on Linux
+
+Extract `tar.gz` file into a specific folder. 
+```
+ln -s ~/programs/uaexpert-1.5.1/UaExpert-1.5.1-331-x86_64.AppImage  uaexpert
+```
+
+### UA Demo Server on Linux
+
+
 * Install wine with root
 
 ```
 apt install wine
-dpkg --add-architecture i386 && apt-get update && apt-get install wine32
+dpkg --add-architecture i386 && apt-get update && apt-get install wine32 winbind
 ```
-* Install the downloaded Server and uaexpert on Linux
+
+
+* Install the downloaded OPC UA C Demo Server / C++ Demo Server on Linux
+
+There are two Demo Servers, one can install both through wine
+
+```
+$ wine uaservercpp-win32-x86-vs2010sp1-v1.7.0-449.exe
+```
+Set the installation path such as `C:\Program Files (x86)\UnifiedAutomation\UaCPPServer`
+
 
 ```
 $ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
-$ wine uaexpert-bin-win32-x86-vs2008sp1-v1.5.0-319.exe
-
 ```
+Set the installation path such as `C:\Program Files (x86)\UnifiedAutomation\UaAnsiCServer`
+
 
 ## Run and Stop a simulated server
 
