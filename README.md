@@ -42,76 +42,85 @@ $ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
 Set the installation path such as `C:\UnifiedAutomation\UaAnsiCServer`
 
 
+
+## Configure a simulated server
+
+* Open `UaAnsiCServer/bin/settings.ini` and replace `[gethostname]` with `127.0.0.1`. 
+
+```
+uaopcua-server (master)$ ./start_server.bash edit
+```
+
 ## Run and Stop a simulated server
+However, we only cover UA C demo server. 
+
 
 * Start the server : C demo
 ```
- ./start_server.bash cstart
-jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
-10:58:39.559|E|0009* UA Server: Building Provider List...
-10:58:39.560|E|0009* UA Server: Loading Provider Modules...
-10:58:39.560|W|0009* Initialize Server Provider ...
-10:58:39.564|W|0009* Server Provider initialized!
-10:58:39.564|W|0009*    2043 Nodes created
-10:58:39.564|W|0009*    NS1:
-10:58:39.564|W|0009*    19 static nodes created
-10:58:39.564|W|0009*    35 static references created
-10:58:39.564|W|0009*    3 static methods created
-10:58:39.564|E|0009* Initialize Demo Provider ...
-10:58:39.569|E|0009* Demo Provider initialized!
-10:58:39.569|E|0009*    2566 Nodes created
-10:58:39.569|E|0009*    NS4:
-10:58:39.569|E|0009*    569 static nodes created
-10:58:39.569|E|0009*    1199 static references created
-10:58:39.569|E|0009*    23 static methods created
-10:58:39.569|W|0009* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
-10:58:39.570|E|0009* 
-10:58:39.570|E|0009* ######################################################################
-10:58:39.570|E|0009* # Server started! Press x to stop; r to restart the server!
-10:58:39.570|E|0009* ######################################################################
-10:58:39.571|E|0009*   Endpoint URL 0: opc.tcp://127.0.0.1:48020
-10:58:39.571|E|0009*   Server started at 2018-11-27T09:58:39.571Z
-
+jhlee@proton: uaopcua-server (master)$ ./start_server.bash start
+jhlee@proton: uaopcua-server (master)$ UA Server: Initializing Stack...
+12:12:24.974|E|0009* UA Server: Building Provider List...
+12:12:24.974|E|0009* UA Server: Loading Provider Modules...
+12:12:24.974|W|0009* Initialize Server Provider ...
+12:12:24.979|W|0009* Server Provider initialized!
+12:12:24.979|W|0009*    2043 Nodes created
+12:12:24.979|W|0009*    NS1:
+12:12:24.979|W|0009*    19 static nodes created
+12:12:24.979|W|0009*    35 static references created
+12:12:24.979|W|0009*    3 static methods created
+12:12:24.979|E|0009* Initialize Demo Provider ...
+12:12:24.985|E|0009* Demo Provider initialized!
+12:12:24.985|E|0009*    2566 Nodes created
+12:12:24.985|E|0009*    NS4:
+12:12:24.985|E|0009*    569 static nodes created
+12:12:24.985|E|0009*    1199 static references created
+12:12:24.985|E|0009*    23 static methods created
+12:12:24.985|W|0009* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
+12:12:24.986|E|0009* 
+12:12:24.986|E|0009* ######################################################################
+12:12:24.986|E|0009* # Server started! Press x to stop; r to restart the server!
+12:12:24.986|E|0009* ######################################################################
+12:12:24.986|E|0009*   Endpoint URL 0: opc.tcp://127.0.0.1:48020
+12:12:24.986|E|0009*   Server started at 2019-10-02T10:12:24.986Z
 ```
 
 * Stop the server
 ```
-opcua-server (master)$ ./start_server.bash cstop
->> Server is running with 22685
+uaopcua-server (master)$ ./start_server.bash stop
+>> Server is running with 7009
    Killing the running server ....
 ```
 
 * Restart the server
 ```
-opcua-server (master)$ ./start_server.bash crestart
->> Server is running with 22744
-   Killing the running server ....
-jhlee@hadron: opcua-server (master)$ UA Server: Initializing Stack...
-10:59:41.684|E|0020* UA Server: Building Provider List...
-10:59:41.685|E|0020* UA Server: Loading Provider Modules...
-10:59:41.685|W|0020* Initialize Server Provider ...
-10:59:41.689|W|0020* Server Provider initialized!
-10:59:41.689|W|0020*    2043 Nodes created
-10:59:41.689|W|0020*    NS1:
-10:59:41.689|W|0020*    19 static nodes created
-10:59:41.689|W|0020*    35 static references created
-10:59:41.690|W|0020*    3 static methods created
-10:59:41.690|E|0020* Initialize Demo Provider ...
-10:59:41.695|E|0020* Demo Provider initialized!
-10:59:41.695|E|0020*    2566 Nodes created
-10:59:41.695|E|0020*    NS4:
-10:59:41.695|E|0020*    569 static nodes created
-10:59:41.695|E|0020*    1199 static references created
-10:59:41.695|E|0020*    23 static methods created
-10:59:41.695|W|0020* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
-10:59:41.697|E|0020* 
-10:59:41.697|E|0020* ######################################################################
-10:59:41.697|E|0020* # Server started! Press x to stop; r to restart the server!
-10:59:41.697|E|0020* ######################################################################
-10:59:41.697|E|0020*   Endpoint URL 0: opc.tcp://hadron:48020
-10:59:41.697|E|0020*   Server started at 2018-11-27T09:59:41.697Z
-
+uaopcua-server (master)$ ./start_server.bash restart
+>> Server is not running
+jhlee@proton: uaopcua-server (master)$ UA Server: Initializing Stack...
+12:13:00.117|E|0009* UA Server: Building Provider List...
+12:13:00.117|E|0009* UA Server: Loading Provider Modules...
+12:13:00.117|W|0009* Initialize Server Provider ...
+12:13:00.121|W|0009* Server Provider initialized!
+12:13:00.122|W|0009*    2043 Nodes created
+12:13:00.122|W|0009*    NS1:
+12:13:00.122|W|0009*    19 static nodes created
+12:13:00.122|W|0009*    35 static references created
+12:13:00.122|W|0009*    3 static methods created
+12:13:00.122|E|0009* Initialize Demo Provider ...
+12:13:00.128|E|0009* Demo Provider initialized!
+12:13:00.128|E|0009*    2566 Nodes created
+12:13:00.128|E|0009*    NS4:
+12:13:00.128|E|0009*    569 static nodes created
+12:13:00.128|E|0009*    1199 static references created
+12:13:00.128|E|0009*    23 static methods created
+12:13:00.128|W|0009* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
+12:13:00.129|E|0009* 
+12:13:00.129|E|0009* ######################################################################
+12:13:00.129|E|0009* # Server started! Press x to stop; r to restart the server!
+12:13:00.129|E|0009* ######################################################################
+12:13:00.129|E|0009*   Endpoint URL 0: opc.tcp://127.0.0.1:48020
+12:13:00.129|E|0009*   Server started at 2019-10-02T10:13:00.129Z
 ```
+
 
 * Check the settings.ini into the bin path
 
@@ -123,12 +132,6 @@ ${HOME}/.wine/drive_c/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
 In order to make the connection smoothly, it would be better to replace [gethostname] with 127.0.0.1 such as
 ```
 opc.tcp://127.0.0.1:48020
-```
-
-
-* Start the UaExpert
-```
-opcua-server (master)$ ./start_server.bash uaexpert
 ```
 
 * Get the machine ip address

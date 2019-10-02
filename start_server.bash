@@ -19,8 +19,8 @@
 #
 #   author  : Jeong Han Lee
 #   email   : jeonghan.lee@gmail.com
-#   date    : Thursday, January 31 20:41:37 CET 2019
-#   version : 0.0.3
+#   date    : Wednesday, October  2 12:14:12 CEST 2019
+#   version : 0.0.4
 
 declare -gr SC_SCRIPT="$(realpath "$0")"
 declare -gr SC_SCRIPTNAME=${0##*/}
@@ -163,44 +163,45 @@ function install_ini_for_cserver
 }
 
 case "$1" in
-    cstart)
+    start)
 	start_cserver
 	;;
-    cstop)
+    stop)
 	stop_cserver
 	;;
-    crestart)
+    restart)
 	stop_cserver
 	start_cserver
 	;;
-    cppstart)
-	start_cppserver
-	;;
-    cppstop)
-	stop_cppserver
-	;;
-    cpprestart)
-	stop_cppserver
-	start_cppserver
-	;;
+    # cppstart)
+    # 	start_cppserver
+    # 	;;
+    # cppstop)
+    # 	stop_cppserver
+    # 	;;
+    # cpprestart)
+    # 	stop_cppserver
+    # 	start_cppserver
+    # 	;;
     uaexpert)
 	start_uaexpert
 	;;
 #    install)
 #	install_ini
     #	;;
-    cedit)
+    edit)
 	emacs "${UaAnsiCServer}/bin/settings.ini" &
 	;;
-    cshow)
+    show)
 	printf "\"${UaAnsiCServer}/bin/settings.ini\"\n"
+	cat "${UaAnsiCServer}/bin/settings.ini"
 	;;
-    cppedit)
-	emacs "${UaCPPServer}/bin/ServerConfig.xml" &
-	;;
-    cppshow)
-	printf "\"${UaCPPServer}/bin/ServerConfig.xml\"\n"
-	;;
+    # cppedit)
+    # 	emacs "${UaCPPServer}/bin/ServerConfig.xml" &
+    # 	;;
+    # cppshow)
+    # 	printf "\"${UaCPPServer}/bin/ServerConfig.xml\"\n"
+    # 	;;
     ip)
 	get_ip;
 	;;
