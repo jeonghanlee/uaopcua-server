@@ -67,7 +67,7 @@ function checkIfFile
 	result=$EXIST
 	# exist
     fi
-    echo "${result}"	 
+    echo "${result}"
 };
 
 
@@ -140,7 +140,7 @@ function stop_cppserver
 
 function start_uaexpert
 {
-    
+
     pushd "${HOME}/.wine/drive_c/Program Files/UnifiedAutomation/UaExpert/bin"
     wine uaexpert.exe &
     popd
@@ -152,13 +152,13 @@ function install_ini_for_cserver
 {
     local settings=settings.ini
     local settings_path=${SC_TOP}/.ini
-    
+
     pushd "${UaAnsiCServer}/bin"
     if [[ $(checkIfFile "${settings}") -eq "$EXIST" ]]; then
 	printf "We've found %s, create the existent backup, and move it to %s with the suffix\n" "${settings}" "${settings_path}"
 	mv ${settings} ${settings_path}/${settings}_${SC_LOGDATE}
     fi
-   
+
     install -m 644 ${settings_path}/${settings} "${UaAnsiCServer}/bin"
 }
 
@@ -190,7 +190,7 @@ case "$1" in
 #	install_ini
     #	;;
     edit)
-	emacs "${UaAnsiCServer}/bin/settings.ini" &
+	pluma "${UaAnsiCServer}/bin/settings.ini" &
 	;;
     show)
 	printf "\"${UaAnsiCServer}/bin/settings.ini\"\n"

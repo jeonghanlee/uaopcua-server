@@ -7,11 +7,11 @@ Unified Automation ANSI C Server SDK V1.8.3 Configuration on Linux
 * Wine
 * Unified Automation ANSI C Server [1]
 
-## Preparation 
+## Preparation
 
 ### UaExpert on Linux
 
-Extract `tar.gz` file into a specific folder. 
+Extract `tar.gz` file into a specific folder.
 ```
 ln -s ~/programs/uaexpert-1.5.1/UaExpert-1.5.1-331-x86_64.AppImage  ~/bin/uaexpert
 ```
@@ -37,7 +37,7 @@ Set the installation path such as `C:\UnifiedAutomation\UaCPPServer`
 
 
 ```
-$ wine uaserverc-win32-x86-vs2010sp1-v1.8.3-398.exe
+$ wine uaserverc-win32-x86-vs2015-v1.10.1-501.exe
 ```
 Set the installation path such as `C:\UnifiedAutomation\UaAnsiCServer`
 
@@ -45,14 +45,16 @@ Set the installation path such as `C:\UnifiedAutomation\UaAnsiCServer`
 
 ## Configure a simulated server
 
-* Open `UaAnsiCServer/bin/settings.ini` and replace `[gethostname]` with `127.0.0.1`. 
+* Open `${HOME}/.wine/dosdevices/c:/UnifiedAutomation/UaAnsiCServer/bin/settings.ini` and replace `[gethostname]` with `127.0.0.1`.
+
+The script `edit` argument will help to open that file with `pluma` if MATE environment is used.
 
 ```
 uaopcua-server (master)$ ./start_server.bash edit
 ```
 
 ## Run and Stop a simulated server
-However, we only cover UA C demo server. 
+However, we only cover UA C demo server.
 
 
 * Start the server : C demo
@@ -76,7 +78,7 @@ jhlee@proton: uaopcua-server (master)$ UA Server: Initializing Stack...
 12:12:24.985|E|0009*    1199 static references created
 12:12:24.985|E|0009*    23 static methods created
 12:12:24.985|W|0009* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
-12:12:24.986|E|0009* 
+12:12:24.986|E|0009*
 12:12:24.986|E|0009* ######################################################################
 12:12:24.986|E|0009* # Server started! Press x to stop; r to restart the server!
 12:12:24.986|E|0009* ######################################################################
@@ -113,7 +115,7 @@ jhlee@proton: uaopcua-server (master)$ UA Server: Initializing Stack...
 12:13:00.128|E|0009*    1199 static references created
 12:13:00.128|E|0009*    23 static methods created
 12:13:00.128|W|0009* Configuration warning: SecurityPolicy 'http://opcfoundation.org/UA/SecurityPolicy#None' is enabled, this allows clients to connect without security and certificate validation
-12:13:00.129|E|0009* 
+12:13:00.129|E|0009*
 12:13:00.129|E|0009* ######################################################################
 12:13:00.129|E|0009* # Server started! Press x to stop; r to restart the server!
 12:13:00.129|E|0009* ######################################################################
@@ -124,7 +126,7 @@ jhlee@proton: uaopcua-server (master)$ UA Server: Initializing Stack...
 
 * Check the settings.ini into the bin path
 
-One example, the target path is defined as 
+One example, the target path is defined as
 
 ```
 ${HOME}/.wine/drive_c/UnifiedAutomation/UaAnsiCServer/bin/settings.ini
@@ -140,17 +142,14 @@ uaopcua-server (master)$ ./start_server.bash ip
 ```
 
 
-## Connect the Server with EPICS IOC 
-
-Please check e3-opcua [2] in order to do this.
 
 ## OPC UA GUI Client
-One can download the Unified-automation UaExpert tool [3].
+One can download the Unified-automation UaExpert tool [2].
 
+
+## Connect the Server with EPICS IOC
 
 ## Reference
 [1] https://www.unified-automation.com/downloads/opc-ua-servers
 
-[2] https://github.com/icshwi/e3-opcua
-
-[3] https://www.unified-automation.com/downloads/opc-ua-clients/file/download/details/uaexpert-v150.html
+[2] https://www.unified-automation.com/downloads/opc-ua-clients
